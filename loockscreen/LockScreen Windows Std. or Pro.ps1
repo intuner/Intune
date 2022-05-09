@@ -9,9 +9,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 .SYNOPSIS
-    Kurzbeschreibung
+    Set LockScreen 
 .DESCRIPTION
-    Lange Beschreibung
+This Script allows the Configuration of the LockScreen for non Windows Enterprise and Windows Education.
+The Image File is copied to the local Device and then the Lockscreen is activated via Registrykeys.
+
+minimum OS: Windows 10 1903 or later
+
 .NOTES
 Author:     Sven Krott
 Authoremail sven.krott@acp.de
@@ -21,7 +25,8 @@ Initials:   SvKr
 #---------------------------------------------------------[Hystory]--------------------------------------------------------
 
 Date      	   Version   	   By	     Comments
-----------	   -------	      ---	    ----------------------------------------------------------
+05/09/2022     1.0             SvKr 	  Initial Version
+
 ---------------------------------------------------------------------------------------------------------------------------
 
 
