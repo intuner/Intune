@@ -1,57 +1,39 @@
-Set LockScreen for none Microsoft Enterprise an Edu Device
+# Set LockScreen for none Microsoft Enterprise and non Edu Device in Microsoft Endpoint Manager
 
 ## Table of Contents
-1. [General Info](#general-info)
-2. [Technologies](#technologies)
-3. [Installation](#installation)
-4. [Collaboration](#collaboration)
+1. [Purpose](#purpose)
+2. [Description](#description)
+4. [Version](#version)
 5. [FAQs](#faqs)
 
-### General Info
+### Purpose
 ***
-Write down the general informations of your project. It is worth to always put a project status in the Readme file. This is where you can add it. 
-### Screenshot
-![Image text](https://www.united-internet.de/fileadmin/user_upload/Brands/Downloads/Logo_IONOS_by.jpg)
+The Script allows the Configuration of the LockScreen for non Windows Enterprise and Windows Education Device with Intune.
+The Image File is copied to the local Device and then the Lockscreen is activated via Registrykeys.
 
-## Technologies
+### Description
 ***
-A list of technologies used within the project:
-* [Technologie name](https://example.com): Version 12.3 
-* [Technologie name](https://example.com): Version 2.34
-* [Library name](https://example.com): Version 1234
+The script Create-Lockscree.ps1 uses a folder named DATA. In the DATA folder the used LockScreen image is stored.
 
-## Installation
+ToDp:
+
+1. create a folder with the name LockScreen and copy the two scripts Create-LockScreenps1. and Remove-LockScreen.ps1 into this folder.
+2. create a folder with the name "Data" in the folder "LockScreen" and copy the used image Example LockScreen.jpg in the folder "Data".
+3. adjust the variable in the two copied scripts to your needs.
+4. reate an Intune Win32 application using the IntuneWinAppUtil tool. The complete LockScreen order must to be used.
+
+
+### Version
 ***
-A little intro about the installation. 
-```
-$ git clone https://example.com
-$ cd ../path/to/the/file
-$ npm install
-$ npm start
-```
-Side information: To use the application in a special environment use ```lorem ipsum``` to start
 
-## Collaboration
+Name of File | Version | Date
+--- | --- | ---
+**Create-LockScreen.ps1** | `1.0` | **05/09/2022**
+**Remove-LockScreen.ps1** | `1.0` | **05/10/2022**
+**Detect-CreateLockScreen.ps1** | `1.0` | **05/10/2022**
+
+### FAQs
 ***
-Give instructions on how to collaborate with your project.
-> Maybe you want to write a quote in this part. 
-> It should go over several rows?
-> This is how you do it.
+Currently no questions are
 
-## FAQs
-***
-A list of frequently asked questions
-1. **This is a question in bold**
-Answer of the first question with _italic words_. 
-2. __Second question in bold__ 
-To answer this question we use an unordered list:
-* First point
-* Second Point
-* Third point
-3. **Third question in bold**
-Answer of the third question with *italic words*.
-4. **Fourth question in bold**
 
-| Headline 1 in the tablehead | Headline 2 in the tablehead | Headline 3 in the tablehead |
-|:--------------|:-------------:|--------------:|
-| text-align left | text-align center | text-align right |
