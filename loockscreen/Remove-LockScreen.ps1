@@ -9,10 +9,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 .SYNOPSIS
-    Set LockScreen 
+Remove LockScreen 
 .DESCRIPTION
-This Script allows the Configuration of the LockScreen for non Windows Enterprise and Windows Education.
-The Image File is copied to the local Device and then the Lockscreen is activated via Registrykeys.
+This script removes configuration of LockScreen for non-Windows Enterprise and Windows Education.
+The image file is removed on the local device and the registry parameters are removed from the script.
 
 minimum OS: Windows 10 1903 or later
 
@@ -25,7 +25,7 @@ Initials:   SvKr
 #---------------------------------------------------------[Hystory]--------------------------------------------------------
 
 Date      	   Version   	   By	     Comments
-05/09/2022     1.0             SvKr 	  Initial Version
+05/10/2022     1.0             SvKr 	  Initial Version
 
 ---------------------------------------------------------------------------------------------------------------------------
 
@@ -100,37 +100,32 @@ Function Write-Log {
 #---------------------------------------------------------[Program]--------------------------------------------------------#>
 
 
-write-log -logstring "Starting $AppName Install" -loglevel info -LogFile $LogFile
+write-log -logstring "Starting $AppName uninstall" -loglevel info -LogFile $LogFile
 
 $exitcode = 0
 
-# Copy File to $FilePath
+# Remove File from $FilePath
 try {
-    Copy-Item - Path ".\Data\$AppFile" -Destination "$FilePath\" -Force -Confirm:$false -ErrorAction Stop
+    Remove-Item -Path "$FilePath" -Force -Confirm:$false -ErrorAction Stop
     Start-Sleep -s 10
 
 }
 catch {
-    write-log -logstring "Could not Copy '$AppFile'" -loglevel error -LogFile $LogFile
+    write-log -logstring "Could $AppFile not remove from lokal System" -loglevel error -LogFile $LogFile
     write-log -logstring $Error[0].exception.message -loglevel error -LogFile $LogFile
     $exitcode = 1 
 }
 
 Start-Sleep -s 
 
-# Set RegKey
+# Remove RegKey
 
-if (!(Test-Path $RegKeyPath)) {
-    Write-Host "Creating registry path $($RegKeyPath)."
-    New-Item -Path $RegKeyPath -Force | Out-Null
-}
+Write-Host "Remove registry path $($RegKeyPath)."
+Remove-Item -Path $RegKeyPath -Recurse | Out-Null
 
-
-New-ItemProperty -Path $RegKeyPath -Name $LockScreenStatus -Value $StatusValue -PropertyType DWORD -Force | Out-Null
-New-ItemProperty -Path $RegKeyPath -Name $LockScreenPath -Value $LockScreenImageValue -PropertyType STRING -Force | Out-Null
-New-ItemProperty -Path $RegKeyPath -Name $LockScreenUrl -Value $LockScreenImageValue -PropertyType STRING -Force | Out-Null
 
 RUNDLL32.EXE USER32.DLL, UpdatePerUserSystemParameters 1, True
 
-Write-Log -logstring "Installation of $AppName is completed" -loglevel info -LogFile $logfile
+Write-Log -logstring "Uninstalling of $AppName is completed" -loglevel info -LogFile $logfile
 exit $exitcode
+
